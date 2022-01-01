@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <main>
+        <head>
+            <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="indexStyle.css" />
+            <title>cs332t32 Professor</title>
+        </head>
+
+        <body>
+            <div class="header">
+                <div>
+                <button><a href="index.html">Home</a></button>
+                </div>
+            </div>
+
+            <section>
+                <div class="input">
+                <h3>View Classes</h3>
+                <form action="professor.php" method="POST">
+                    Enter SSN:
+                    <input type="text" name="ssn" />
+                    <input type="submit" name="classes" value="Submit" />
+                </form>
+                </div>
+                <div class="input">
+                <h3>View Grades by Section</h3>
+                <form action="professor.php" method="POST">
+                    Enter Course Number (ex. "CPSC 332"):
+                    <input type="text" name="cnum" /> <br/>
+                    <br/>
+                    Enter Section Number:
+                    <input type="text" name="snum" /> <br/> <br/>
+                    <input type="submit" name="grades" value="Submit" />
+                </form>
+                </div>
+            </section>
+        </body>
+    </main>
+</html>

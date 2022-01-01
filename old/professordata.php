@@ -1,16 +1,27 @@
 <html>
     <body>
         <?php
-            if(isset($_POST['submit-ssm'])){
+            $hostname = "localhost";
+            $username = "cs332t32";
+            $password = "Mov4ZULO";
+            $dbname = "cs332t32";
+        
+            
+            
+            if(isset($_POST['submit-ssn'])){
+                $link = mysqli_connect($hostName, $userName, $password, $dbName)
+                            
+                if (!$link){
+                    die('Unable to connect to host $HOSTNAME')
+                }
 
-                require_once('connect_mysql.php');
                 echo 'Connected successfully!<p>';
 
                 $inputSSN = $_POST['ssn'];
 
                 $query = "SELECT s.course_section_number, s.classroom, s.meeting_days, s.beginning_time, s.ending_time, c.course_id, c.course_title
-                            FROM Course_Sections s, Course c
-                            WHERE s.ssn_number = $inputSSN AND s.course_section_number = c.course_id;"
+                            FROM Course_Sections s, Course c, Professor p
+                            WHERE p.ssn = $inputSSN AND s.course_section_number = c.course_id;"
                 $result = $link->query($query);
                 $numRows = $result->num_rows;
 
@@ -32,13 +43,18 @@
                     echo '<tr><td align="left">' . 'ENDING TIME: ' . $row['ending_time'] . '<p><hr>';
                 }
 
-                $result->free_result();
+                $result->free();
                 $link->close();
 
             }
             else if (isset($_POST['submit-nums'])){
 
-                require_once('connect_mysql.php');
+                $link = mysqli_connect($hostName, $userName, $password, $dbName)
+                            
+                if (!$link){
+                    die('Unable to connect to host $HOSTNAME')
+                }
+
                 echo 'Connected successfully!<p>';
 
                 $inputCnum = $_POST['cnum'];
@@ -47,7 +63,7 @@
                 $query = "SELECT er.grade, COUNT(*) 
                             FROM Course_Sections s, Course c, Erollment_Record er
                             WHERE c.course_id = $inputCnum AND s.course_section_number = $inputSnum AND
-                                c.course_id = s.course_section_number AND s.course_section_number = er.course_number AND er.course_section = s.course_section_number";
+                                c.course_id = s.course_section_number AND s.course_section_number = er.course_num AND er.section_num = s.course_section_number";
                 $result = $link->query($query);
                 $numRows = $result->num_rows;
 
@@ -66,11 +82,15 @@
                     echo '<tr><td align="left">' . 'COUNT: ' . $row['COUNT(*)'] . '<p>';
                 }
 
-                $result->free_result();
+                $result->free();
                 $link->close();
             }
             else{
-                echo "Error submitting forms.";
+                echo "<title>cs32t13 | ERROR</title>";
+                echo '<a href="index.html"> Home </a>';
+                echo '<a href="professor.html"> Professor </a> <br>';
+                echo "ERROR: Forms not submitted correctly <br>";
+                print_r($_POST);
             }
         ?>
     </body>

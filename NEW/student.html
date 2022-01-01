@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <main>
+        <head>
+            <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="indexStyle.css" />
+            <title>cs332t32 Student</title>
+        </head>
+
+        <body>
+            <div class = "header">
+                <div>
+                <button><a href="index.html">Home</a></button>
+                </div>
+            </div>
+
+            <section>
+                <div class="input">
+                    <h2>View Class Sections</h3>
+                    <form action="student.php" method="POST">
+                        Enter Course Number (ex. "CPSC 332"):
+                        <input type="text" name="cnum" />
+                        <input type="submit" name="section" value="Submit" />
+                    </form>
+                </div>
+                <div class="input">
+                    <h3>View Grade History</h3>
+                    <form action="student.php" method="POST">
+                        Enter CWID:
+                        <input type="text" name="cwid" />
+                        <input type="submit" name="transcript" value="Submit" />
+                    </form>
+                </div>
+            </section>
+        </body>
+    </main>
+</html>
